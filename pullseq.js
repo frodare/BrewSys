@@ -2,17 +2,17 @@ var http = require('http'),
 	util = require('util'),
 	fs = require('fs');
 
-var client = http.createClient(80, 'www.brewtoad.com');
+var client = http.createClient(80, 'www.example.com');
 
 
-var start = 1;
-var stop = 300;
+var start = 601;
+var stop = 700;
 
 
-req(start, 'yeasts');
-req(start, 'hops');
+//req(start, 'yeasts');
+//req(start, 'hops');
 req(start, 'fermentables');
-req(start, 'styles');
+//req(start, 'styles');
 
 //compileDir('/tmp/fermentables', '/tmp/ferementables2.json');
 
