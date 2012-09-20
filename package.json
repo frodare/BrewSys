@@ -1,9 +1,18 @@
 {
-    "name": "BrewSys"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.2"
-    , "jade": ">= 0.0.1"
-  }
+  "author": "Charles Howard <frodare@gmail.com> (http://beerd.us/)",
+  "name": "BrewSys",
+  "description": "Brewing Software",
+  "version": "0.0.0",
+  "homepage": "http://brewsys.frodare.com/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/frodare/BrewSys.git"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "dependencies": {
+    "express": "3.x"
+  },
+  "devDependencies": {}
 }
