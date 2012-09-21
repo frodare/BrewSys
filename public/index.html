@@ -17,10 +17,21 @@
                 padding-bottom: 40px;
             }
         </style>
+
+
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/custom-theme/jquery-ui-1.8.16.custom.css">
+        
+        <link rel="stylesheet" href="css/bml.css">
+
+        
+        <link rel="stylesheet" href="js/vendor/codemirror/lib/codemirror.css">
+        <link rel="stylesheet" href="js/vendor/codemirror/lib/util/simple-hint.css">
         <link rel="stylesheet" href="css/main.css">
-         <link rel="stylesheet" href="css/bml.css">
+
+       
+   
+   
 
         <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
     </head>
@@ -54,18 +65,38 @@
 
         <div class="container">
 
-            <!-- Main hero unit for a primary marketing message or call to action -->
-         
             <div class="row">
-                <div id="bml" class="span4"></div>
-                <div id="bml-display" class="span8"></div>
+                <div class="recipe-editor span5">
+                    <div class="section">
+                        <textarea id="code" name="code">
+--INFO-------------------------------------
+style: 
+brewers: 
+size: 5 gallons
+
+--GRAIN-------------------------------------
+8 lbs American 2 row [1.8L 37PPG]
+
+--HOPS--------------------------------------
+60 min 3/4 oz Cascade [5%]
+
+--YEAST-------------------------------------
+1pkg Safeale US-05 [73%]
+
+--NOTES-------------------------------------
+Yummy!
+                        </textarea>
+                    </div>
+                </div>
+                <div class="beer-results span4"><div class="section content"></div></div>
+                <div class="style-compare span3"><div class="section">foo</div></div>
             </div>
 
 
             <!-- Example row of columns -->
             <div class="row">
                 <div class="span4">
-                    <h2>Beer Markup</h2>
+                    <h4>Beer Markup</h4>
                     <p>
                         Beer Markup Language (BML).
                         A beer recipe syntax that is easy to write and read by humans yet has enough structure to be read by brewing software.
@@ -73,13 +104,13 @@
                     <p><a class="btn" href="https://github.com/frodare/beer-markup">View details &raquo;</a></p>
                 </div>
                 <div class="span4">
-                    <h2>Beerd Brewing</h2>
+                    <h4>Beerd Brewing</h4>
                     <p>Beerd Brewing is a group of homebrewers mostly based in North Florida. Our mission is to make quality homebrewed beer and have fun educating people about brewing.</p>
                     <p>Follow us on <a href='https://www.facebook.com/beerdbrews'>Facebook</a> to see the latest creations.</p> 
                     <p><a class="btn" href="http://beerd.us">View details &raquo;</a></p>
                 </div>
                 <div class="span4">
-                    <h2>jsBrewCalc</h2>
+                    <h4>jsBrewCalc</h4>
                     <p>JavaScript library of brewing calculations</p>
                     <p><a class="btn" href="https://github.com/frodare/jsBrewCalc">View details &raquo;</a></p>
                </div>
@@ -97,9 +128,17 @@
         <script src="js/vendor/jquery.tmpl.min.js"></script>
         <script src="js/vendor/jquery-ui-1.8.16.custom.min.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
+
+
+        <script src="js/vendor/codemirror/lib/codemirror.js"></script>
+        <script src="js/vendor/codemirror/lib/util/simple-hint.js"></script>
+
+        <script src="js/tables.js"></script>
+
         <script src="js/brewcalc.js"></script>
         <script src="js/brewcalc-gravity.js"></script>
         <script src="js/brewcalc-units.js"></script>
+        
         <script src="js/main.js"></script>
         <script src="js/bml.js"></script>
 
@@ -115,14 +154,15 @@
                 <div><b>BU:GU</b>: ${stats.buog}</div>
                 <div><b>ABV</b>: ${stats.abv}</div>
                 <div><b>Calories/12oz</b>: ${stats.cal12oz}</div>
-               
                 <div style="height:20px;background-color:${color};"></div>
             </div>
         </script>
 
         <script>
-            var display = $('#bml-display');
+            var display = $('.beer-results .content');
             $('#results-tmpl').template('results');
+            
+            /*
             $('#bml').bmlParser({
                 update: function (ev, recipe) {
                     var stats = BREWCALC.compute(recipe);
@@ -133,7 +173,61 @@
                     }));
 
                 }
+            });*/
+
+
+            CodeMirror.commands.autocomplete = function(e) {
+                CodeMirror.simpleHint(e, CodeMirror.bmlHint);
+            }
+
+
+            var autoPatterns = {
+                'grain' : /^[^\[]+$/,
+                'hops' : /^[^\[]+$/
+            }
+
+
+            var editor;
+
+            function parse() {
+                var val = editor.getValue();
+                var recipe = BML.parse(val);
+                var stats = BREWCALC.compute(recipe);
+                    
+                display.html($.tmpl('results', {
+                    stats: stats,
+                    color: BREWCALC.units.convert('SRM', 'HTML_RGB', stats.srm) 
+                }));
+            }
+
+            editor = CodeMirror.fromTextArea($('.recipe-editor textarea')[0], {
+                mode: 'bml',
+                lineNumbers: false,
+                matchBrackets: true,
+                theme: "default",
+                onChange : function (cm, d) {
+                    /* d  {from, to, text, next} */
+                    var cursor = cm.getCursor()
+                    var section = cm.getStateAfter(cursor.line).section;
+                    var line = cm.getLine(cursor.line);
+
+                    /*
+                     * determine wether to auto fire or not
+                     */
+                    if (autoPatterns[section]) {
+                        if(line && line.match(autoPatterns[section])){
+                            CodeMirror.simpleHint(cm, CodeMirror.bmlHint);
+                        }
+                    }
+
+                   
+                    parse();
+                },
+
+                extraKeys: {"Ctrl-Space": "autocomplete"}
             });
+            parse();
+
         </script>
 
     </body>

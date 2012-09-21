@@ -185,7 +185,6 @@ BREWCALC.units = (function($) {
 			if(val > 40){
 				return '#000';
 			}
-			console.log(rgb);
 			return '#' + hex(rgb.r) + hex(rgb.g) + hex(rgb.b);
 		}
 	};

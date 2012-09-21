@@ -1,55 +1,66 @@
-(function($) {
+
+
+/*global CodeMirror:true grainTable:true hopTable:true */
+CodeMirror.defineMode("bml", function(cmCfg, modeCfg) {
 	'use strict';
 
-	var defaultRecipe = '';
-	defaultRecipe += 'info\n';
-	defaultRecipe += '----------------------------\n';
-	defaultRecipe += 'style: 10A 2008\n';
-	defaultRecipe += 'brewers: \n';
-	defaultRecipe += 'size: 11 Gal\n';
-	defaultRecipe += '\n';
-	defaultRecipe += 'grain\n';
-	defaultRecipe += '----------------------------\n';
-	defaultRecipe += '20 lb American 2 row 1.8L 37PPG\n';
-	defaultRecipe += '2 lb crystal 60L 34PPG\n';
-	defaultRecipe += '\n';
-	defaultRecipe += 'hops\n';
-	defaultRecipe += '----------------------------\n';
-	defaultRecipe += '60 min 1 oz Magnum 12%\n';
-	defaultRecipe += '\n';
-	defaultRecipe += 'yeast\n';
-	defaultRecipe += '----------------------------\n';
-	defaultRecipe += '1pkg Safeale US-05 75%\n';
-	defaultRecipe += '\n';
-	defaultRecipe += 'notes\n';
-	defaultRecipe += '----------------------------\n';
 
-	var reserved = ['grain','hops','yeast','notes', 'info'];
+
+	/*
+	 * .cm-s-default span.cm-keyword {color: #708;}
+.cm-s-default span.cm-atom {color: #219;}
+.cm-s-default span.cm-number {color: #164;}
+.cm-s-default span.cm-def {color: #00f;}
+.cm-s-default span.cm-variable {color: black;}
+.cm-s-default span.cm-variable-2 {color: #05a;}
+.cm-s-default span.cm-variable-3 {color: #085;}
+.cm-s-default span.cm-property {color: black;}
+.cm-s-default span.cm-operator {color: black;}
+.cm-s-default span.cm-comment {color: #a50;}
+.cm-s-default span.cm-string {color: #a11;}
+.cm-s-default span.cm-string-2 {color: #f50;}
+.cm-s-default span.cm-meta {color: #555;}
+.cm-s-default span.cm-error {color: #f00;}
+.cm-s-default span.cm-qualifier {color: #555;}
+.cm-s-default span.cm-builtin {color: #30a;}
+.cm-s-default span.cm-bracket {color: #cc7;}
+.cm-s-default span.cm-tag {color: #170;}
+.cm-s-default span.cm-attribute {color: #00c;}
+.cm-s-default span.cm-header {color: blue;}
+.cm-s-default span.cm-quote {color: #090;}
+.cm-s-default span.cm-hr {color: #999;}
+.cm-s-default span.cm-link {color: #00c;}
+
+span.cm-header, span.cm-strong {font-weight: bold;}
+span.cm-em {font-style: italic;}
+span.cm-emstrong {font-style: italic; font-weight: bold;}
+span.cm-link {text-decoration: underline;}
+
+span.cm-invalidchar {color: #f00;}
+	 */
 
 	var process = {
-		info: function(data, line) {
-			var match = line.match(/^\s*([a-z]+)\s*:\s*(.*)\s*/i);
-			if (!match) {
-				return;
-			}
-			var key = match[1];
-			if($.inArray(key, reserved) < 0){
-				data[key] = match[2];
+		info: function(stream, state) {
+			if (stream.eatWhile(/[^:]/)) {
+				if (stream.eol()) {
+					return 'error';
+				}
+				return 'tag';
+			} else {
+				stream.skipToEnd();
+				return '';
 			}
 		},
-		grain: function (data, line) {
-			var match = line.match(/^\s*([0-9\/.]+)\s*(lbs|lb|oz)\s*(.*?)\s*([0-9.]+)l\s*([0-9.]+)ppg/i);
-			if (!match) {
-				return;
+		grain: function(stream, state) {
+			stream.skipToEnd();
+			var match = stream.string.match(/^\s*([0-9\/.]+)\s*(lbs|lb|oz)\s+(.*) \[(?:\s*([0-9.]+)([a-z]+)\s*)+\]$/i);
+			//console.log(match);
+			if (match === null) {
+				return 'error';
 			}
-			data.grain.push({
-				amount: match[1],
-				unit: match[2],
-				name: match[3],
-				color: match[4],
-				ppg: match[5]
-			});
-		},
+			return '';
+		}
+		/*,
 		hops: function (data, line) {
 			var match = line.match(/^\s*([0-9]+)\s*(?:min)?\s*([0-9\/.]+)\s*(lbs|lb|oz)\s*(.*?)\s*([0-9.]+)%/i);
 			if (!match) {
@@ -80,90 +91,290 @@
 			}else{
 				data.notes += '\n' + line;
 			}
+		}*/
+	};
+
+	return {
+		token: function(stream, state) {
+			/*
+			 * read section
+			 */
+			var match = stream.string.match(/^\s*-{2,}([^\-]{2,})-*/);
+			if (match) {
+
+				state.section = match[1].toLowerCase();
+				//console.log('seciton: [' + state.section + ']');
+				state.recipe[state.section] = {};
+				stream.skipToEnd();
+				return 'header';
+			}
+
+			/*
+			 *
+			 */
+			if (process[state.section]) {
+				return process[state.section](stream, state);
+			}
+
+			stream.skipToEnd();
+			return '';
+
+		},
+		startState: function() {
+			return {
+				recipe: {},
+				section: ''
+			};
 		}
 	};
 
 
-	$.widget("bml.bmlParser", {
-		options: {
-			delay: 50
+
+});
+
+CodeMirror.defineMIME("text/x-bml", "bml");
+
+
+function suggestGrain(pre, s) {
+	'use strict';
+	var i, l = grainTable.length,
+		a = [],
+		name;
+
+	if(!pre){
+		pre = '1 lb ';
+	}
+
+
+	for (i = 0; i < l; i++) {
+		var re = new RegExp(s, "i");
+		name = grainTable[i].name;
+		if (name.match(re) !== null) {
+			a.push(pre + name + ' [' + grainTable[i].color + 'L ' + grainTable[i].ppg + 'PPG]');
+		}
+	}
+
+
+	return a;
+}
+
+function suggestHop(pre, s) {
+	'use strict';
+	var i, l = hopTable.length,
+		a = [],
+		name;
+
+	if(!pre){
+		pre = '60 min 1 oz ';
+	}
+
+	console.log('Hop suggest: s = [' + s + '] pre=' + pre);
+
+	for (i = 0; i < l; i++) {
+		var re = new RegExp(s, "i");
+		name = hopTable[i].name;
+		if (name.match(re) !== null) {
+			a.push(pre + name + ' [' + hopTable[i].aa + '%]');
+		}
+	}
+
+	return a;
+}
+
+
+CodeMirror.bmlHint = function(cm) {
+	'use strict';
+	var i, cursor = cm.getCursor();
+
+
+
+	var text = cm.getRange({
+		line: cursor.line,
+		ch: 0
+	}, cursor);
+
+
+	var eol = cm.getLine(cursor.line).length;
+
+	var symbol = '';
+
+	var section = cm.getStateAfter(cursor.line).section;
+	//console.log(state.section);
+	/*
+		for (i = text.length - 1; i >= 0; i--) {
+			if (text[i] === ' ') {
+				break;
+			} else {
+				typed = text[i] + typed;
+			}
+		}
+	 */
+
+	var hints, m;
+	if (section === 'grain') {
+		/*
+		 * remove the weight
+		 */
+		
+
+		m = text.match(/^\s*([0-9\/.]+\s*(?:lbs|lb|oz)\s+)([^\[]*)/);
+
+
+		if(m !== null){
+			hints = suggestGrain(m[1], m[2]);
+		}else{
+			hints = suggestGrain('', text);
+		}
+	} else if (section === 'hops') {
+		/*
+		 * remove the weight
+		 */
+		
+		m = text.match(/^\s*([0-9]+\s*(?:min)?\s*[0-9\/.]+\s*(?:lbs|lb|oz)\s*)([^\[]*)/i);
+
+
+		if(m !== null){
+			hints = suggestHop(m[1], m[2]);
+		}else{
+			hints = suggestHop('', text);
+		}
+		
+	} else {
+		return;
+	}
+
+
+
+	return {
+		list: hints,
+		from: {
+			line: cursor.line,
+			ch: cursor.ch - text.length
 		},
+		to: {
+			line: cursor.line,
+			ch: eol
+		}
+	};
 
-		_create: function() {
-			var self = this,
-				o = self.options,
-				e = self.element;
+};
 
-			e.addClass('bml-parser');
 
-			self.input = $('<textarea></textarea>').text(defaultRecipe);
 
-			e.append(self.input);
+var BML = {};
+BML.parse = (function($) {
+	'use strict';
 
-			self.input.on('keyup change', function () {
-				self.parseWithDelay();
-			});
+	function parseParams(s) {
+		var a = s.split(/\s+/);
+		var params = {};
+		$.each(a, function (i, param) {
+			var m = param.match(/^([0-9.\/]*)([^0-9]+)$/i);
+			if(m !== null){
+				params[m[2].toLowerCase()] = m[1];
+			}
+		});
+		return params;
+	}
 
-			self.parse();
-
+	var process = {
+		info: function(data, line) {
+			var match = line.match(/^\s*([a-z]+)\s*:\s*(.*)\s*/i);
+			if (!match) {
+				return;
+			}
+			var key = match[1].toLowerCase();
+			data.info[key] = match[2];
+			
 		},
-
-		text: function() {
-			return this.input.val().toLowerCase();
-		},
-
-		parseWithDelay: function () {
-			var self = this;
-
-			if(self.wait){
-				clearTimeout(self.wait);
+		grain: function (data, line) {
+			var match = line.match(/^\s*([0-9\/.]+)\s*(lbs|lb|oz)\s*([^\[]+)\s*\[([^\[]+)\]/i);
+			if (!match) {
+				return;
 			}
 
-			self.wait = setTimeout(function() {
-				self.parse();
-				self.wait = undefined;
-			}, self.options.delay);
-		},
-
-		parse: function() {
-			var self = this,
-				text = self.text(),
-				prev, curr, section;
-
-			var data = {
-				grain: [],
-				hops: [],
-				yeast: []
-			};
-
-			$.each(text.split('\n'), function(i, line) {
-				prev = curr;
-				curr = line;
-
-
-				/*
-				 * detect new section
-				 */
-				if (line.match(/^-{2,}/)) {
-					section = prev;
-					return;
-				}
-
-				if (!section) {
-					return;
-				}
-
-				if (process[section]) {
-					process[section](data, line);
-				}
-
-				
+			var params = parseParams(match[4]);
+			
+			data.grain.push({
+				amount: match[1].toLowerCase(),
+				unit: match[2].toLowerCase(),
+				name: match[3],
+				color: params.l,
+				ppg: params.ppg
 			});
-			self.data = data;
-			self._trigger('update', null, data);
+		},
+		hops: function (data, line) {
+			var match = line.match(/^\s*([0-9]+)\s*(?:min)?\s*([0-9\/.]+)\s*(lbs|lb|oz)\s*([^\[]+)\s*\[([^\[]+)\]/i);
+			if (!match) {
+				return;
+			}
+
+			var params = parseParams(match[5]);
+
+			data.hops.push({
+				min: match[1].toLowerCase(),
+				amount: match[2].toLowerCase(),
+				unit: match[3].toLowerCase(),
+				name: match[4],
+				aa: params['%']
+			});
+		},
+		yeast: function (data, line) {
+			var match = line.match(/^\s*([0-9]+)\s*(?:pkg)?\s*([^\[]+)\s*\[([^\[]+)\]/i);
+			if (!match) {
+				return;
+			}
+
+			var params = parseParams(match[3]);
+
+			data.yeast.push({
+				amount: match[1],
+				name: match[2],
+				att: params['%']
+			});
+		},
+		notes: function (data, line) {
+			if(!data.notes){
+				data.notes = line;
+			}else{
+				data.notes += '\n' + line;
+			}
 		}
-	});
+	};
 
 
+	return function(bml) {
+		var section;
+
+		var data = {
+			grain: [],
+			hops: [],
+			yeast: [],
+			info: {}
+		};
+
+		$.each(bml.split('\n'), function(i, line) {
+			
+			/*
+			 * detect new section
+			 */
+			var sectionMatch = line.match(/^-{2,}([^\-]+)/);
+			if (sectionMatch !== null) {
+				section = sectionMatch[1].toLowerCase();
+				return;
+			}
+
+			if (!section) {
+				return;
+			}
+
+			if (process[section]) {
+				process[section](data, line);
+			}
+
+			
+		});
+		return data;
+	};
 
 }(jQuery));

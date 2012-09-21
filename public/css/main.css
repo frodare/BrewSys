@@ -1,11 +1,46 @@
 
 
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
+.CodeMirror {
+   /* border-top: 1px solid black; border-bottom: 1px solid black; */
+   font-size:14px;
+   line-height: 14px;
+}
+
+.CodeMirror-scroll {
+    height: auto; 
+    overflow: visible;
+}
 
 
 
+.CodeMirror-completions select {
+	width: auto;
+	border: 1px solid #555;
+	border-top: 0;
+	background: white;
+	padding: 0 1em 1em;
+}
+
+
+
+.recipe-editor .section {
+
+	border: 1px solid #DDD;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+
+	/*
+	padding:1em;
+	background-color: white;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+
+	background: #F7F7F9;
+	 */
+}
 
 
 

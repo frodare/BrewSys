@@ -38,13 +38,6 @@ var BREWCALC = {
 	var tinseth = function(og, time, amount, aa, vol) {
 		var ibu = 0;
 
-		console.log('og: ' + og);
-		console.log('time: ' + time);
-		console.log('amount: ' + amount);
-		console.log('aa: ' + aa);
-		console.log('vol: ' + vol);
-
-
 		//FIXME: assume preboil
 		var preboil = og * 0.98;
 
@@ -62,14 +55,6 @@ var BREWCALC = {
 
 		ibu += aaFactor * bignessFactor * timeFactor;
 
-
-		console.log('Time Factor: ' + timeFactor);
-		console.log('Big Factor: ' + bignessFactor);
-		console.log('aaFactor: ' + aaFactor);
-		console.log('ibu: ' + ibu);
-		console.log(ibu);
-		
-
 		return ibu;
 	};
 
@@ -81,9 +66,9 @@ var BREWCALC = {
 
 	b.compute = function(recipe) {
 
-		var volume = parseFloat(recipe.size, 10);
+		var volume = parseFloat(recipe.info.size, 10);
 		if (!volume) {
-			throw new Error('recipe.size is required');
+			throw new Error('recipe.info.size is required');
 		}
 
 
@@ -97,8 +82,8 @@ var BREWCALC = {
 		 *  gravity
 		 */
 		$.each(recipe.grain, function(i, grain) {
-			if (grain.unit !== 'lb') {
-				console.log('ignore grain unit not "lb"');
+			if (grain.unit !== 'lb' && grain.unit !== 'lbs') {
+				console.log('ignore grain unit not "lb/s"');
 				return;
 			}
 			var amount = parseFloat(grain.amount, 10);
@@ -149,12 +134,12 @@ var BREWCALC = {
 			og: og.toFixed(3),
 			fg: fg.toFixed(3),
 			lbs: lbs,
-			ibu: ibu,
-			abv: abv,
-			abw: abw,
+			ibu: Math.round(ibu),
+			abv: abv.toFixed(1),
+			abw: abw.toFixed(1),
 			srm: Math.round(srm),
-			buog: buog,
-			cal12oz: cal12oz
+			buog: buog.toFixed(2),
+			cal12oz: Math.round(cal12oz)
 		};
 
 	};
