@@ -1461,3 +1461,1851 @@ var grainTable = [{
 	"type": "adjunct",
 	"description": "Imparts intense, sweet flavor. A British mixture of molasses, invert sugar and golden syrup (corn syrup). Use in dark English ales."
 }];
+
+var styleTable = [{
+	"style": "Lite American Lager",
+	"category": "1A",
+	"abv": {
+		"min": 2.8,
+		"max": 4.2
+	},
+	"ibu": {
+		"min": 8,
+		"max": 12
+	},
+	"srm": {
+		"min": 2,
+		"max": 3
+	},
+	"og": {
+		"min": 1.028,
+		"max": 1.04
+	},
+	"fg": {
+		"min": 0.998,
+		"max": 1.008
+	},
+	"aparent_attenuation": 0.91,
+	"bugu": 0.29
+}, {
+	"style": "Standard American Lager",
+	"category": "1B",
+	"abv": {
+		"min": 4.2,
+		"max": 5.3
+	},
+	"ibu": {
+		"min": 8,
+		"max": 15
+	},
+	"srm": {
+		"min": 2,
+		"max": 4
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.05
+	},
+	"fg": {
+		"min": 1.004,
+		"max": 1.01
+	},
+	"aparent_attenuation": 0.84,
+	"bugu": 0.26
+}, {
+	"style": "Premium American Lager",
+	"category": "1C",
+	"abv": {
+		"min": 4.6,
+		"max": 6
+	},
+	"ibu": {
+		"min": 15,
+		"max": 25
+	},
+	"srm": {
+		"min": 2,
+		"max": 6
+	},
+	"og": {
+		"min": 1.046,
+		"max": 1.056
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.80,
+	"bugu": 0.39
+}, {
+	"style": "Munich Helles",
+	"category": "1D",
+	"abv": {
+		"min": 4.7,
+		"max": 5.4
+	},
+	"ibu": {
+		"min": 16,
+		"max": 22
+	},
+	"srm": {
+		"min": 3,
+		"max": 5
+	},
+	"og": {
+		"min": 1.045,
+		"max": 1.051
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.78,
+	"bugu": 0.4
+}, {
+	"style": "Dortmunder Export",
+	"category": "1E",
+	"abv": {
+		"min": 4.8,
+		"max": 6
+	},
+	"ibu": {
+		"min": 23,
+		"max": 30
+	},
+	"srm": {
+		"min": 4,
+		"max": 6
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.056
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.015
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.51
+}, {
+	"style": "German Pilsner (Pils)",
+	"category": "2A",
+	"abv": {
+		"min": 4.4,
+		"max": 5.2
+	},
+	"ibu": {
+		"min": 25,
+		"max": 45
+	},
+	"srm": {
+		"min": 2,
+		"max": 5
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.05
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.013
+	},
+	"aparent_attenuation": 0.77,
+	"bugu": 0.74
+}, {
+	"style": "Bohemian Pilsener",
+	"category": "2B",
+	"abv": {
+		"min": 4.2,
+		"max": 5.4
+	},
+	"ibu": {
+		"min": 35,
+		"max": 45
+	},
+	"srm": {
+		"min": 3.5,
+		"max": 6
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.056
+	},
+	"fg": {
+		"min": 1.013,
+		"max": 1.017
+	},
+	"aparent_attenuation": 0.69,
+	"bugu": 0.8
+}, {
+	"style": "Classic American Pilsner",
+	"category": "2C",
+	"abv": {
+		"min": 4.5,
+		"max": 6
+	},
+	"ibu": {
+		"min": 25,
+		"max": 40
+	},
+	"srm": {
+		"min": 3,
+		"max": 6
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.015
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.63
+}, {
+	"style": "Vienna Lager",
+	"category": "3A",
+	"abv": {
+		"min": 4.5,
+		"max": 5.5
+	},
+	"ibu": {
+		"min": 18,
+		"max": 30
+	},
+	"srm": {
+		"min": 10,
+		"max": 16
+	},
+	"og": {
+		"min": 1.046,
+		"max": 1.052
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.49
+}, {
+	"style": "Oktoberfest/Märzen",
+	"category": "3B",
+	"abv": {
+		"min": 4.8,
+		"max": 5.7
+	},
+	"ibu": {
+		"min": 20,
+		"max": 28
+	},
+	"srm": {
+		"min": 7,
+		"max": 14
+	},
+	"og": {
+		"min": 1.05,
+		"max": 1.057
+	},
+	"fg": {
+		"min": 1.012,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.73,
+	"bugu": 0.45
+}, {
+	"style": "Dark American Lager",
+	"category": "4A",
+	"abv": {
+		"min": 4.2,
+		"max": 6
+	},
+	"ibu": {
+		"min": 8,
+		"max": 20
+	},
+	"srm": {
+		"min": 14,
+		"max": 22
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.056
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.79,
+	"bugu": 0.28
+}, {
+	"style": "Munich Dunkel",
+	"category": "4B",
+	"abv": {
+		"min": 4.5,
+		"max": 5.6
+	},
+	"ibu": {
+		"min": 18,
+		"max": 28
+	},
+	"srm": {
+		"min": 14,
+		"max": 28
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.056
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.44
+}, {
+	"style": "Schwarzbier (Black Beer)",
+	"category": "4C",
+	"abv": {
+		"min": 4.4,
+		"max": 5.4
+	},
+	"ibu": {
+		"min": 22,
+		"max": 32
+	},
+	"srm": {
+		"min": 17,
+		"max": 30
+	},
+	"og": {
+		"min": 1.046,
+		"max": 1.052
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.73,
+	"bugu": 0.55
+}, {
+	"style": "Maibock/Helles Bock",
+	"category": "5A",
+	"abv": {
+		"min": 6.3,
+		"max": 7.4
+	},
+	"ibu": {
+		"min": 23,
+		"max": 35
+	},
+	"srm": {
+		"min": 6,
+		"max": 11
+	},
+	"og": {
+		"min": 1.064,
+		"max": 1.072
+	},
+	"fg": {
+		"min": 1.011,
+		"max": 1.018
+	},
+	"aparent_attenuation": 0.78,
+	"bugu": 0.43
+}, {
+	"style": "Traditional Bock",
+	"category": "5B",
+	"abv": {
+		"min": 6.3,
+		"max": 7.2
+	},
+	"ibu": {
+		"min": 20,
+		"max": 27
+	},
+	"srm": {
+		"min": 14,
+		"max": 22
+	},
+	"og": {
+		"min": 1.064,
+		"max": 1.072
+	},
+	"fg": {
+		"min": 1.013,
+		"max": 1.019
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.35
+}, {
+	"style": "Doppelbock",
+	"category": "5C",
+	"abv": {
+		"min": 7,
+		"max": 10
+	},
+	"ibu": {
+		"min": 16,
+		"max": 26
+	},
+	"srm": {
+		"min": 6,
+		"max": 25
+	},
+	"og": {
+		"min": 1.072,
+		"max": 1.112
+	},
+	"fg": {
+		"min": 1.016,
+		"max": 1.024
+	},
+	"aparent_attenuation": 0.77,
+	"bugu": 0.23
+}, {
+	"style": "Eisbock",
+	"category": "5D",
+	"abv": {
+		"min": 9,
+		"max": 14
+	},
+	"ibu": {
+		"min": 25,
+		"max": 35
+	},
+	"srm": {
+		"min": 18,
+		"max": 30
+	},
+	"og": {
+		"min": 1.078,
+		"max": 1.12
+	},
+	"fg": {
+		"min": 1.02,
+		"max": 1.035
+	},
+	"aparent_attenuation": 0.70,
+	"bugu": 0.3
+}, {
+	"style": "Cream Ale",
+	"category": "6A",
+	"abv": {
+		"min": 4.2,
+		"max": 5.6
+	},
+	"ibu": {
+		"min": 15,
+		"max": 20
+	},
+	"srm": {
+		"min": 2.5,
+		"max": 5
+	},
+	"og": {
+		"min": 1.042,
+		"max": 1.055
+	},
+	"fg": {
+		"min": 1.006,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.81,
+	"bugu": 0.36
+}, {
+	"style": "Blonde Ale",
+	"category": "6B",
+	"abv": {
+		"min": 3.8,
+		"max": 5.5
+	},
+	"ibu": {
+		"min": 15,
+		"max": 28
+	},
+	"srm": {
+		"min": 3,
+		"max": 6
+	},
+	"og": {
+		"min": 1.038,
+		"max": 1.054
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.013
+	},
+	"aparent_attenuation": 0.76,
+	"bugu": 0.47
+}, {
+	"style": "Kölsch",
+	"category": "6C",
+	"abv": {
+		"min": 4.4,
+		"max": 5.2
+	},
+	"ibu": {
+		"min": 20,
+		"max": 30
+	},
+	"srm": {
+		"min": 3.5,
+		"max": 5
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.05
+	},
+	"fg": {
+		"min": 1.007,
+		"max": 1.011
+	},
+	"aparent_attenuation": 0.80,
+	"bugu": 0.53
+}, {
+	"style": "American Wheat or Rye Beer",
+	"category": "6D",
+	"abv": {
+		"min": 4,
+		"max": 5.5
+	},
+	"ibu": {
+		"min": 15,
+		"max": 30
+	},
+	"srm": {
+		"min": 3,
+		"max": 6
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.055
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.013
+	},
+	"aparent_attenuation": 0.77,
+	"bugu": 0.47
+}, {
+	"style": "Northern German Altbier",
+	"category": "7A",
+	"abv": {
+		"min": 4.5,
+		"max": 5.2
+	},
+	"ibu": {
+		"min": 25,
+		"max": 40
+	},
+	"srm": {
+		"min": 13,
+		"max": 19
+	},
+	"og": {
+		"min": 1.046,
+		"max": 1.054
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.015
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.65
+}, {
+	"style": "California Common Beer",
+	"category": "7B",
+	"abv": {
+		"min": 4.5,
+		"max": 5.5
+	},
+	"ibu": {
+		"min": 30,
+		"max": 45
+	},
+	"srm": {
+		"min": 10,
+		"max": 14
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.054
+	},
+	"fg": {
+		"min": 1.011,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.74
+}, {
+	"style": "Düsseldorf Altbier",
+	"category": "7C",
+	"abv": {
+		"min": 4.5,
+		"max": 5.2
+	},
+	"ibu": {
+		"min": 35,
+		"max": 50
+	},
+	"srm": {
+		"min": 11,
+		"max": 17
+	},
+	"og": {
+		"min": 1.046,
+		"max": 1.054
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.015
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.85
+}, {
+	"style": "Standard/Ordinary Bitter",
+	"category": "8A",
+	"abv": {
+		"min": 3.2,
+		"max": 3.8
+	},
+	"ibu": {
+		"min": 25,
+		"max": 35
+	},
+	"srm": {
+		"min": 4,
+		"max": 14
+	},
+	"og": {
+		"min": 1.032,
+		"max": 1.04
+	},
+	"fg": {
+		"min": 1.007,
+		"max": 1.011
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.83
+}, {
+	"style": "Special/Best/Premium Bitter",
+	"category": "8B",
+	"abv": {
+		"min": 3.8,
+		"max": 4.6
+	},
+	"ibu": {
+		"min": 25,
+		"max": 40
+	},
+	"srm": {
+		"min": 5,
+		"max": 16
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.048
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.77,
+	"bugu": 0.74
+}, {
+	"style": "Extra Special/Strong Bitter",
+	"category": "8C",
+	"abv": {
+		"min": 4.6,
+		"max": 6.2
+	},
+	"ibu": {
+		"min": 30,
+		"max": 50
+	},
+	"srm": {
+		"min": 6,
+		"max": 18
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.74
+}, {
+	"style": "Scottish Light 60/-",
+	"category": "9A",
+	"abv": {
+		"min": 2.5,
+		"max": 3.2
+	},
+	"ibu": {
+		"min": 10,
+		"max": 20
+	},
+	"srm": {
+		"min": 9,
+		"max": 17
+	},
+	"og": {
+		"min": 1.03,
+		"max": 1.035
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.013
+	},
+	"aparent_attenuation": 0.64,
+	"bugu": 0.46
+}, {
+	"style": "Scottish Heavy 70/-",
+	"category": "9B",
+	"abv": {
+		"min": 3.2,
+		"max": 3.9
+	},
+	"ibu": {
+		"min": 10,
+		"max": 25
+	},
+	"srm": {
+		"min": 9,
+		"max": 17
+	},
+	"og": {
+		"min": 1.035,
+		"max": 1.04
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.015
+	},
+	"aparent_attenuation": 0.66,
+	"bugu": 0.47
+}, {
+	"style": "Scottish Export 80/-",
+	"category": "9C",
+	"abv": {
+		"min": 3.9,
+		"max": 5
+	},
+	"ibu": {
+		"min": 15,
+		"max": 30
+	},
+	"srm": {
+		"min": 9,
+		"max": 17
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.054
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.71,
+	"bugu": 0.48
+}, {
+	"style": "Irish Red Ale",
+	"category": "9D",
+	"abv": {
+		"min": 4,
+		"max": 6
+	},
+	"ibu": {
+		"min": 17,
+		"max": 28
+	},
+	"srm": {
+		"min": 9,
+		"max": 18
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.76,
+	"bugu": 0.43
+}, {
+	"style": "Strong Scotch Ale",
+	"category": "9E",
+	"abv": {
+		"min": 6.5,
+		"max": 10
+	},
+	"ibu": {
+		"min": 17,
+		"max": 35
+	},
+	"srm": {
+		"min": 14,
+		"max": 25
+	},
+	"og": {
+		"min": 1.07,
+		"max": 1.13
+	},
+	"fg": {
+		"min": 1.018,
+		"max": 1.056
+	},
+	"aparent_attenuation": 0.61,
+	"bugu": 0.26
+}, {
+	"style": "American Pale Ale",
+	"category": "10A",
+	"abv": {
+		"min": 4.5,
+		"max": 6
+	},
+	"ibu": {
+		"min": 30,
+		"max": 45
+	},
+	"srm": {
+		"min": 5,
+		"max": 14
+	},
+	"og": {
+		"min": 1.045,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.015
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.71
+}, {
+	"style": "American Amber Ale",
+	"category": "10B",
+	"abv": {
+		"min": 4.5,
+		"max": 6
+	},
+	"ibu": {
+		"min": 25,
+		"max": 40
+	},
+	"srm": {
+		"min": 10,
+		"max": 17
+	},
+	"og": {
+		"min": 1.045,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.015
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.62
+}, {
+	"style": "American Brown Ale",
+	"category": "10C",
+	"abv": {
+		"min": 4.3,
+		"max": 6.2
+	},
+	"ibu": {
+		"min": 20,
+		"max": 40
+	},
+	"srm": {
+		"min": 18,
+		"max": 35
+	},
+	"og": {
+		"min": 1.045,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.57
+}, {
+	"style": "Mild",
+	"category": "11A",
+	"abv": {
+		"min": 2.8,
+		"max": 4.5
+	},
+	"ibu": {
+		"min": 10,
+		"max": 25
+	},
+	"srm": {
+		"min": 12,
+		"max": 25
+	},
+	"og": {
+		"min": 1.03,
+		"max": 1.038
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.013
+	},
+	"aparent_attenuation": 0.68,
+	"bugu": 0.51
+}, {
+	"style": "Southern English Brown Ale",
+	"category": "11B",
+	"abv": {
+		"min": 2.8,
+		"max": 4.1
+	},
+	"ibu": {
+		"min": 12,
+		"max": 20
+	},
+	"srm": {
+		"min": 19,
+		"max": 35
+	},
+	"og": {
+		"min": 1.033,
+		"max": 1.042
+	},
+	"fg": {
+		"min": 1.011,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.66,
+	"bugu": 0.43
+}, {
+	"style": "Northern English Brown Ale",
+	"category": "11C",
+	"abv": {
+		"min": 4.2,
+		"max": 5.4
+	},
+	"ibu": {
+		"min": 20,
+		"max": 30
+	},
+	"srm": {
+		"min": 12,
+		"max": 22
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.052
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.013
+	},
+	"aparent_attenuation": 0.76,
+	"bugu": 0.54
+}, {
+	"style": "Brown Porter",
+	"category": "12A",
+	"abv": {
+		"min": 4,
+		"max": 5.4
+	},
+	"ibu": {
+		"min": 18,
+		"max": 35
+	},
+	"srm": {
+		"min": 20,
+		"max": 30
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.052
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.58
+}, {
+	"style": "Robust Porter",
+	"category": "12B",
+	"abv": {
+		"min": 4.8,
+		"max": 6.5
+	},
+	"ibu": {
+		"min": 25,
+		"max": 50
+	},
+	"srm": {
+		"min": 22,
+		"max": 35
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.065
+	},
+	"fg": {
+		"min": 1.012,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.66
+}, {
+	"style": "Baltic Porter",
+	"category": "12C",
+	"abv": {
+		"min": 5.5,
+		"max": 9.5
+	},
+	"ibu": {
+		"min": 20,
+		"max": 40
+	},
+	"srm": {
+		"min": 17,
+		"max": 30
+	},
+	"og": {
+		"min": 1.06,
+		"max": 1.09
+	},
+	"fg": {
+		"min": 1.016,
+		"max": 1.024
+	},
+	"aparent_attenuation": 0.72,
+	"bugu": 0.4
+}, {
+	"style": "Dry Stout",
+	"category": "13A",
+	"abv": {
+		"min": 4,
+		"max": 5
+	},
+	"ibu": {
+		"min": 30,
+		"max": 45
+	},
+	"srm": {
+		"min": 25,
+		"max": 40
+	},
+	"og": {
+		"min": 1.036,
+		"max": 1.05
+	},
+	"fg": {
+		"min": 1.007,
+		"max": 1.011
+	},
+	"aparent_attenuation": 0.78,
+	"bugu": 0.87
+}, {
+	"style": "Sweet Stout",
+	"category": "13B",
+	"abv": {
+		"min": 4,
+		"max": 6
+	},
+	"ibu": {
+		"min": 20,
+		"max": 40
+	},
+	"srm": {
+		"min": 30,
+		"max": 40
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1.012,
+		"max": 1.024
+	},
+	"aparent_attenuation": 0.64,
+	"bugu": 0.58
+}, {
+	"style": "Oatmeal Stout",
+	"category": "13C",
+	"abv": {
+		"min": 4.2,
+		"max": 5.9
+	},
+	"ibu": {
+		"min": 25,
+		"max": 40
+	},
+	"srm": {
+		"min": 22,
+		"max": 40
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.065
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.018
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.58
+}, {
+	"style": "Foreign Extra Stout",
+	"category": "13D",
+	"abv": {
+		"min": 5.5,
+		"max": 8
+	},
+	"ibu": {
+		"min": 30,
+		"max": 70
+	},
+	"srm": {
+		"min": 30,
+		"max": 40
+	},
+	"og": {
+		"min": 1.056,
+		"max": 1.075
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.018
+	},
+	"aparent_attenuation": 0.78,
+	"bugu": 0.76
+}, {
+	"style": "American Stout",
+	"category": "13E",
+	"abv": {
+		"min": 5,
+		"max": 7
+	},
+	"ibu": {
+		"min": 35,
+		"max": 75
+	},
+	"srm": {
+		"min": 30,
+		"max": 40
+	},
+	"og": {
+		"min": 1.05,
+		"max": 1.075
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.022
+	},
+	"aparent_attenuation": 0.73,
+	"bugu": 0.88
+}, {
+	"style": "Imperial Stout",
+	"category": "13F",
+	"abv": {
+		"min": 8,
+		"max": 12
+	},
+	"ibu": {
+		"min": 50,
+		"max": 90
+	},
+	"srm": {
+		"min": 30,
+		"max": 40
+	},
+	"og": {
+		"min": 1.075,
+		"max": 1.115
+	},
+	"fg": {
+		"min": 1.018,
+		"max": 1.03
+	},
+	"aparent_attenuation": 0.73,
+	"bugu": 0.74
+}, {
+	"style": "English IPA",
+	"category": "14A",
+	"abv": {
+		"min": 5,
+		"max": 7.5
+	},
+	"ibu": {
+		"min": 40,
+		"max": 60
+	},
+	"srm": {
+		"min": 8,
+		"max": 14
+	},
+	"og": {
+		"min": 1.05,
+		"max": 1.075
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.018
+	},
+	"aparent_attenuation": 0.77,
+	"bugu": 0.8
+}, {
+	"style": "American IPA",
+	"category": "14B",
+	"abv": {
+		"min": 5.5,
+		"max": 7.5
+	},
+	"ibu": {
+		"min": 40,
+		"max": 70
+	},
+	"srm": {
+		"min": 6,
+		"max": 15
+	},
+	"og": {
+		"min": 1.056,
+		"max": 1.075
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.018
+	},
+	"aparent_attenuation": 0.78,
+	"bugu": 0.84
+}, {
+	"style": "Imperial IPA",
+	"category": "14C",
+	"abv": {
+		"min": 7.5,
+		"max": 10
+	},
+	"ibu": {
+		"min": 60,
+		"max": 120
+	},
+	"srm": {
+		"min": 8,
+		"max": 15
+	},
+	"og": {
+		"min": 1.075,
+		"max": 1.09
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.02
+	},
+	"aparent_attenuation": 0.81,
+	"bugu": 1.09
+}, {
+	"style": "Weizen/Weissbier",
+	"category": "15A",
+	"abv": {
+		"min": 4.3,
+		"max": 5.6
+	},
+	"ibu": {
+		"min": 8,
+		"max": 15
+	},
+	"srm": {
+		"min": 2,
+		"max": 8
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.052
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.24
+}, {
+	"style": "Dunkelweizen",
+	"category": "15B",
+	"abv": {
+		"min": 4.3,
+		"max": 5.6
+	},
+	"ibu": {
+		"min": 10,
+		"max": 18
+	},
+	"srm": {
+		"min": 14,
+		"max": 23
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.056
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.28
+}, {
+	"style": "Weizenbock",
+	"category": "15C",
+	"abv": {
+		"min": 6.5,
+		"max": 8
+	},
+	"ibu": {
+		"min": 15,
+		"max": 30
+	},
+	"srm": {
+		"min": 12,
+		"max": 25
+	},
+	"og": {
+		"min": 1.064,
+		"max": 1.09
+	},
+	"fg": {
+		"min": 1.015,
+		"max": 1.022
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.29
+}, {
+	"style": "Roggenbier (German Rye)",
+	"category": "15D",
+	"abv": {
+		"min": 4.5,
+		"max": 6
+	},
+	"ibu": {
+		"min": 10,
+		"max": 20
+	},
+	"srm": {
+		"min": 14,
+		"max": 19
+	},
+	"og": {
+		"min": 1.046,
+		"max": 1.056
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.76,
+	"bugu": 0.29
+}, {
+	"style": "Witbier",
+	"category": "16A",
+	"abv": {
+		"min": 4.5,
+		"max": 5.5
+	},
+	"ibu": {
+		"min": 10,
+		"max": 20
+	},
+	"srm": {
+		"min": 2,
+		"max": 4
+	},
+	"og": {
+		"min": 1.044,
+		"max": 1.052
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.78,
+	"bugu": 0.31
+}, {
+	"style": "Belgian Pale Ale",
+	"category": "16B",
+	"abv": {
+		"min": 4.8,
+		"max": 5.5
+	},
+	"ibu": {
+		"min": 20,
+		"max": 30
+	},
+	"srm": {
+		"min": 8,
+		"max": 14
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.054
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.76,
+	"bugu": 0.49
+}, {
+	"style": "Saison",
+	"category": "16C",
+	"abv": {
+		"min": 5,
+		"max": 7
+	},
+	"ibu": {
+		"min": 20,
+		"max": 35
+	},
+	"srm": {
+		"min": 5,
+		"max": 14
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.065
+	},
+	"fg": {
+		"min": 1.002,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.87,
+	"bugu": 0.49
+}, {
+	"style": "Bière de Garde",
+	"category": "16D",
+	"abv": {
+		"min": 6,
+		"max": 8.5
+	},
+	"ibu": {
+		"min": 18,
+		"max": 28
+	},
+	"srm": {
+		"min": 6,
+		"max": 19
+	},
+	"og": {
+		"min": 1.06,
+		"max": 1.08
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.82,
+	"bugu": 0.33
+}, {
+	"style": "Berliner Weisse",
+	"category": "17A",
+	"abv": {
+		"min": 2.8,
+		"max": 3.8
+	},
+	"ibu": {
+		"min": 3,
+		"max": 8
+	},
+	"srm": {
+		"min": 2,
+		"max": 3
+	},
+	"og": {
+		"min": 1.028,
+		"max": 1.032
+	},
+	"fg": {
+		"min": 1.003,
+		"max": 1.006
+	},
+	"aparent_attenuation": 0.85,
+	"bugu": 0.18
+}, {
+	"style": "Flanders Red Ale",
+	"category": "17B",
+	"abv": {
+		"min": 4.6,
+		"max": 6.5
+	},
+	"ibu": {
+		"min": 10,
+		"max": 25
+	},
+	"srm": {
+		"min": 10,
+		"max": 16
+	},
+	"og": {
+		"min": 1.048,
+		"max": 1.057
+	},
+	"fg": {
+		"min": 1.002,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.86,
+	"bugu": 0.33
+}, {
+	"style": "Flanders Brown Ale/Oud Bruin",
+	"category": "17C",
+	"abv": {
+		"min": 4,
+		"max": 8
+	},
+	"ibu": {
+		"min": 20,
+		"max": 25
+	},
+	"srm": {
+		"min": 15,
+		"max": 22
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.074
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.012
+	},
+	"aparent_attenuation": 0.82,
+	"bugu": 0.39
+}, {
+	"style": "Straight (Unblended) Lambic",
+	"category": "17D",
+	"abv": {
+		"min": 5,
+		"max": 6.5
+	},
+	"ibu": {
+		"min": 0,
+		"max": 10
+	},
+	"srm": {
+		"min": 3,
+		"max": 7
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.054
+	},
+	"fg": {
+		"min": 1.001,
+		"max": 1.01
+	},
+	"aparent_attenuation": 0.88,
+	"bugu": 0.11
+}, {
+	"style": "Gueuze",
+	"category": "17E",
+	"abv": {
+		"min": 5,
+		"max": 8
+	},
+	"ibu": {
+		"min": 0,
+		"max": 10
+	},
+	"srm": {
+		"min": 3,
+		"max": 7
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1,
+		"max": 1.006
+	},
+	"aparent_attenuation": 0.94,
+	"bugu": 0.1
+}, {
+	"style": "Fruit Lambic",
+	"category": "17F",
+	"abv": {
+		"min": 5,
+		"max": 7
+	},
+	"ibu": {
+		"min": 0,
+		"max": 10
+	},
+	"srm": {
+		"min": 3,
+		"max": 7
+	},
+	"og": {
+		"min": 1.04,
+		"max": 1.06
+	},
+	"fg": {
+		"min": 1,
+		"max": 1.01
+	},
+	"aparent_attenuation": 0.90,
+	"bugu": 0.1
+}, {
+	"style": "Belgian Blond Ale",
+	"category": "18A",
+	"abv": {
+		"min": 6,
+		"max": 7.5
+	},
+	"ibu": {
+		"min": 15,
+		"max": 30
+	},
+	"srm": {
+		"min": 4,
+		"max": 7
+	},
+	"og": {
+		"min": 1.062,
+		"max": 1.075
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.018
+	},
+	"aparent_attenuation": 0.80,
+	"bugu": 0.33
+}, {
+	"style": "Belgian Dubbel",
+	"category": "18B",
+	"abv": {
+		"min": 6,
+		"max": 7.6
+	},
+	"ibu": {
+		"min": 15,
+		"max": 25
+	},
+	"srm": {
+		"min": 10,
+		"max": 17
+	},
+	"og": {
+		"min": 1.062,
+		"max": 1.075
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.018
+	},
+	"aparent_attenuation": 0.80,
+	"bugu": 0.29
+}, {
+	"style": "Belgian Tripel",
+	"category": "18C",
+	"abv": {
+		"min": 7.5,
+		"max": 9.5
+	},
+	"ibu": {
+		"min": 20,
+		"max": 40
+	},
+	"srm": {
+		"min": 4.5,
+		"max": 7
+	},
+	"og": {
+		"min": 1.075,
+		"max": 1.085
+	},
+	"fg": {
+		"min": 1.008,
+		"max": 1.014
+	},
+	"aparent_attenuation": 0.85,
+	"bugu": 0.38
+}, {
+	"style": "Belgian Golden Strong Ale",
+	"category": "18D",
+	"abv": {
+		"min": 7.5,
+		"max": 10.5
+	},
+	"ibu": {
+		"min": 22,
+		"max": 35
+	},
+	"srm": {
+		"min": 3,
+		"max": 6
+	},
+	"og": {
+		"min": 1.07,
+		"max": 1.095
+	},
+	"fg": {
+		"min": 1.005,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.86,
+	"bugu": 0.35
+}, {
+	"style": "Belgian Dark Strong Ale",
+	"category": "18E",
+	"abv": {
+		"min": 8,
+		"max": 11
+	},
+	"ibu": {
+		"min": 20,
+		"max": 35
+	},
+	"srm": {
+		"min": 12,
+		"max": 22
+	},
+	"og": {
+		"min": 1.075,
+		"max": 1.11
+	},
+	"fg": {
+		"min": 1.01,
+		"max": 1.024
+	},
+	"aparent_attenuation": 0.80,
+	"bugu": 0.3
+}, {
+	"style": "Old Ale",
+	"category": "19A",
+	"abv": {
+		"min": 6,
+		"max": 9
+	},
+	"ibu": {
+		"min": 30,
+		"max": 60
+	},
+	"srm": {
+		"min": 10,
+		"max": 22
+	},
+	"og": {
+		"min": 1.06,
+		"max": 1.09
+	},
+	"fg": {
+		"min": 1.015,
+		"max": 1.022
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.6
+}, {
+	"style": "English Barleywine",
+	"category": "19B",
+	"abv": {
+		"min": 8,
+		"max": 12
+	},
+	"ibu": {
+		"min": 35,
+		"max": 70
+	},
+	"srm": {
+		"min": 8,
+		"max": 22
+	},
+	"og": {
+		"min": 1.08,
+		"max": 1.12
+	},
+	"fg": {
+		"min": 1.018,
+		"max": 1.03
+	},
+	"aparent_attenuation": 0.74,
+	"bugu": 0.53
+}, {
+	"style": "American Barleywine",
+	"category": "19C",
+	"abv": {
+		"min": 8,
+		"max": 12
+	},
+	"ibu": {
+		"min": 50,
+		"max": 120
+	},
+	"srm": {
+		"min": 10,
+		"max": 19
+	},
+	"og": {
+		"min": 1.08,
+		"max": 1.12
+	},
+	"fg": {
+		"min": 1.016,
+		"max": 1.03
+	},
+	"aparent_attenuation": 0.75,
+	"bugu": 0.85
+}, {
+	"style": "Classic Rauchbier",
+	"category": "22A",
+	"abv": {
+		"min": 4.8,
+		"max": 6
+	},
+	"ibu": {
+		"min": 20,
+		"max": 30
+	},
+	"srm": {
+		"min": 12,
+		"max": 22
+	},
+	"og": {
+		"min": 1.05,
+		"max": 1.057
+	},
+	"fg": {
+		"min": 1.012,
+		"max": 1.016
+	},
+	"aparent_attenuation": 0.73,
+	"bugu": 0.47
+}, {
+	"style": "Belgian Specialty Ale",
+	"category": "16E"
+}, {
+	"style": "Fruit Beer",
+	"category": "20"
+}, {
+	"style": "Spice, Herb, or Vegatable Beer",
+	"category": "21A"
+}, {
+	"style": "Christmas/Winter Specialty Spiced Beer",
+	"category": "21B"
+}, {
+	"style": "Other Smoked Beer",
+	"category": "22B"
+}, {
+	"style": "Wood-Aged Beer",
+	"category": "22C"
+}, {
+	"style": "pecialty Beer",
+	"category": "23"
+}];

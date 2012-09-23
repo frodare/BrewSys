@@ -1,6 +1,6 @@
 
 
-/*global CodeMirror:true grainTable:true hopTable:true */
+/*global CodeMirror:true grainTable:true hopTable:true styleTable:true */
 CodeMirror.defineMode("bml", function(cmCfg, modeCfg) {
 	'use strict';
 
@@ -168,13 +168,33 @@ function suggestHop(pre, s) {
 		pre = '60 min 1 oz ';
 	}
 
-	console.log('Hop suggest: s = [' + s + '] pre=' + pre);
-
 	for (i = 0; i < l; i++) {
 		var re = new RegExp(s, "i");
 		name = hopTable[i].name;
 		if (name.match(re) !== null) {
 			a.push(pre + name + ' [' + hopTable[i].aa + '%]');
+		}
+	}
+
+	return a;
+}
+
+
+function suggestStyle(s) {
+	'use strict';
+	var i, l = styleTable.length,
+		a = [],
+		name, cat;
+
+	for (i = 0; i < l; i++) {
+
+		var re = new RegExp(s, "i");
+		name = styleTable[i].style;
+		cat = styleTable[i].category;
+
+		if (name.match(re) !== null || cat.match(re) !== null) {
+			//console.log('match!');
+			a.push('style: ' + cat + ' 2008 ' + name);
 		}
 	}
 
@@ -238,6 +258,15 @@ CodeMirror.bmlHint = function(cm) {
 		}else{
 			hints = suggestHop('', text);
 		}
+	} else if (section === 'info') {
+		
+		m = text.match(/^\s*style\s*:\s*(.*)/);
+
+		if(m !== null){
+
+			hints = suggestStyle(m[1]);
+		}
+		
 		
 	} else {
 		return;
@@ -277,6 +306,27 @@ BML.parse = (function($) {
 		return params;
 	}
 
+
+	var processInfo = {
+		style: function (data) {
+			var match = data.match(/^\s*([0-9]{1,2}[a-z]).*?/i);
+			if(match === null){
+				return data;
+			}
+			var cat = match[1].toUpperCase();
+			var guideline;
+			$.each(styleTable, function (i, g) {
+				if (g.category === cat) {
+					guideline = g;
+					return false;
+				}
+			});
+			return guideline;
+		}
+	};
+
+
+
 	var process = {
 		info: function(data, line) {
 			var match = line.match(/^\s*([a-z]+)\s*:\s*(.*)\s*/i);
@@ -284,7 +334,15 @@ BML.parse = (function($) {
 				return;
 			}
 			var key = match[1].toLowerCase();
-			data.info[key] = match[2];
+
+			if(processInfo[key]){
+				data.info[key] = processInfo[key](match[2]);
+			}else{
+				data.info[key] = match[2];
+			}
+
+
+			
 			
 		},
 		grain: function (data, line) {
@@ -316,7 +374,7 @@ BML.parse = (function($) {
 				amount: match[2].toLowerCase(),
 				unit: match[3].toLowerCase(),
 				name: match[4],
-				aa: params['%']
+				aa: params['%']/100
 			});
 		},
 		yeast: function (data, line) {
@@ -330,7 +388,7 @@ BML.parse = (function($) {
 			data.yeast.push({
 				amount: match[1],
 				name: match[2],
-				att: params['%']
+				att: params['%']/100
 			});
 		},
 		notes: function (data, line) {

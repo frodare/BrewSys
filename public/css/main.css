@@ -43,7 +43,73 @@
 }
 
 
+.results-wrapper .guide {
+	font-size:0.8em;
+	line-height: 1em;
+	color:#777;
+}
 
+.results-wrapper .guide-block {
+	display:inline-block;
+
+}
+
+.results-wrapper .glass .glass-overlay {
+	width:60px;
+	height:85px;
+	background: transparent url('../img/pintglass.png') no-repeat -13px -10px;
+}
+
+.results-wrapper .glass {
+	width:60px;
+	height:85px;
+	display:inline-block;
+	vertical-align: top;
+}
+
+.results-wrapper .summary .totals {
+	display:inline-block;
+}
+
+
+.results-wrapper .summary {
+	margin-bottom:1em;
+}
+
+.results-wrapper .param {
+	margin:0.5em 0;
+}
+
+.results-wrapper .est {
+	font-size:1.7em;
+	color:#232;
+}
+
+.results-wrapper .conversion {
+	color:#444;
+	margin-left: 1em;
+	display:none;
+}
+
+
+.results-wrapper .warn .est {
+	color:#f43;
+}
+
+.results-wrapper .label {
+	width:40px;
+	display:inline-block;
+	text-align:right;
+	margin-right:0.5em;
+}
+/*
+.results-wrapper .value {
+	width:120px;
+	display:inline-block;
+	text-align:center;
+}
+
+*/
 
 
 

@@ -1,7 +1,7 @@
 /*
  * jsBrewCalc
  */
-/*global console:true*/
+/*global console:true styleTable:true*/
 
 var BREWCALC = {
 	settings: {
@@ -49,11 +49,12 @@ var BREWCALC = {
 
 		var timeFactor = (1 - Math.pow(Math.E, (-0.04 * time))) / 4.15;
 
-		var aaFactor = ( (aa/100) * amount * 7490 )/vol;
+		var aaFactor = ( aa * amount * 7490 )/vol;
 
-		//console.log(ibu);
+		
 
 		ibu += aaFactor * bignessFactor * timeFactor;
+
 
 		return ibu;
 	};
@@ -62,7 +63,6 @@ var BREWCALC = {
 	function toPlato(g) {
 		return (-463.37) + (668.72 * g) - (205.35 * Math.pow(g,2)) ;
 	}
-
 
 	b.compute = function(recipe) {
 
@@ -74,7 +74,8 @@ var BREWCALC = {
 
 
 		var gu = 0,
-			lbs = 0,
+			glbs = 0,
+			hoz = 0,
 			srmu = 0;
 
 
@@ -88,16 +89,26 @@ var BREWCALC = {
 			}
 			var amount = parseFloat(grain.amount, 10);
 			gu += amount * grain.ppg;
-			lbs += amount;
+			glbs += amount;
 			srmu += grain.color * amount;
 		});
 
 
 		var gut = (gu / volume) * b.settings.eff;
 
+
+		var attenuation = b.settings.defaultAtt;
+		var yeast;
+		if(recipe.yeast.length > 0){
+			yeast = recipe.yeast[0];
+			if(yeast.att){
+				attenuation = yeast.att;
+			}
+		}
+
 		//TODO: need pre boil gravity
 		var og = 1 + (gut / 1000);
-		var fg = 1 + (gut * (1 - b.settings.defaultAtt)) / 1000;
+		var fg = 1 + (gut * (1 - attenuation)) / 1000;
 
 		/*
 		 * hops
@@ -106,8 +117,10 @@ var BREWCALC = {
 		var ibu = 0;
 		var bignessFactor = 1.65 * Math.pow(0.000125, (og - 1));
 		$.each(recipe.hops, function(i, hop) {
+			hoz += toDecimal(hop.amount);
 			ibu += tinseth(og, hop.min, hop.amount, hop.aa, volume);
 		});
+
 
 		//TODO: use an average of og and og pre-boil
 
@@ -129,11 +142,11 @@ var BREWCALC = {
 
 		var srm = b.settings.colorEff * srmu / volume;
 
-
-		return {
+		var stats = {
 			og: og.toFixed(3),
 			fg: fg.toFixed(3),
-			lbs: lbs,
+			glbs: glbs.toFixed(1),
+			hoz: hoz.toFixed(1),
 			ibu: Math.round(ibu),
 			abv: abv.toFixed(1),
 			abw: abw.toFixed(1),
@@ -141,6 +154,8 @@ var BREWCALC = {
 			buog: buog.toFixed(2),
 			cal12oz: Math.round(cal12oz)
 		};
+
+		return stats;
 
 	};
 
