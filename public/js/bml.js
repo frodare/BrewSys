@@ -265,6 +265,8 @@ CodeMirror.bmlHint = function(cm) {
 		if(m !== null){
 
 			hints = suggestStyle(m[1]);
+		}else{
+			return;
 		}
 		
 		
