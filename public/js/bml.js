@@ -60,12 +60,21 @@ span.cm-invalidchar {color: #f00;}
 			return 'grain';
 		},
 		hops: function (stream, state) {
-			stream.skipToEnd();
-			console.log(stream.string);
+			
+			if(state.inHop){
+				stream.skipToEnd();
+				state.inHop = false;
+				return 'attribute';
+			}
+			
 			var match = stream.string.match(/^\s*([0-9]+)\s*(min)?\s*([0-9\/.]+)\s*(lbs|lb|oz)\s*(.*) \[(?:\s*([0-9.]+)([a-z%]+)\s*)+\]$/i);
+			
 			if (match === null) {
 				return 'error';
 			}
+
+			state.inHop = true;
+			stream.eatWhile(/[^\[]/);
 			return 'hops';
 		}/*,
 		yeast: function (data, line) {

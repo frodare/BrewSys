@@ -67,32 +67,32 @@
 		<div class="container">
 
 			<div class="row">
-				<div class="recipe-editor span6">
+				<div class="recipe-editor"  style="width:450px;display:inline-block;vertical-align:top;">
 					<div class="section">
 						<textarea id="code" name="code">
---INFO-------------------------------------
+--INFO------------------------------
 style: 10A 2008 American Pale Ale
 brewers: 
 size: 5 gallons
 
---GRAIN-------------------------------------
+--GRAIN-----------------------------
 9 lbs American 2 row [1.8L 37PPG]
 1 lbs Crystal 60 Malt [60L 34PPG]
 
---HOPS--------------------------------------
+--HOPS------------------------------
 40 min 1 oz Centennial [10%]
 10 min 1/2 oz Cascade (U.S.) [5%]
 5 min 1/2 oz Cascade (U.S.) [5%]
 
---YEAST-------------------------------------
+--YEAST-----------------------------
 1pkg Safeale US-05 [73%]
 
---NOTES-------------------------------------
+--NOTES-----------------------------
 Yummy!
 						</textarea>
 					</div>
 				</div>
-				<div class="beer-results span6"><div class="section content"></div></div>
+				<div class="beer-results" style="margin-left:3em;width:190px;display:inline-block;vertical-align:top;"><div class="section content"></div></div>
 			</div>
 
 
@@ -372,10 +372,8 @@ Yummy!
 						info.html(percent + '%');
 
 						info.css({
-							position: 'absolute',
 							top: offset.top,
-							left: '-50px'
-						})
+						});
 
 						grainLine.parents('div').first().after(info);
 
@@ -402,10 +400,8 @@ Yummy!
 						info.html(percent + '%');
 
 						info.css({
-							position: 'absolute',
 							top: offset.top,
-							left: '-50px'
-						})
+						});
 
 						line.parents('div').first().after(info);
 
