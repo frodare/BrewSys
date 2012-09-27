@@ -70,6 +70,7 @@ span.cm-invalidchar {color: #f00;}
 			var match = stream.string.match(/^\s*([0-9]+)\s*(min)?\s*([0-9\/.]+)\s*(lbs|lb|oz)\s*(.*) \[(?:\s*([0-9.]+)([a-z%]+)\s*)+\]$/i);
 			
 			if (match === null) {
+				stream.skipToEnd();
 				return 'error';
 			}
 
