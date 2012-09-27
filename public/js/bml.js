@@ -54,26 +54,20 @@ span.cm-invalidchar {color: #f00;}
 		grain: function(stream, state) {
 			stream.skipToEnd();
 			var match = stream.string.match(/^\s*([0-9\/.]+)\s*(lbs|lb|oz)\s+(.*) \[(?:\s*([0-9.]+)([a-z]+)\s*)+\]$/i);
-			//console.log(match);
 			if (match === null) {
 				return 'error';
 			}
-			return '';
-		}
-		/*,
-		hops: function (data, line) {
-			var match = line.match(/^\s*([0-9]+)\s*(?:min)?\s*([0-9\/.]+)\s*(lbs|lb|oz)\s*(.*?)\s*([0-9.]+)%/i);
-			if (!match) {
-				return;
-			}
-			data.hops.push({
-				min: match[1],
-				amount: match[2],
-				unit: match[3],
-				name: match[4],
-				aa: match[5]
-			});
+			return 'grain';
 		},
+		hops: function (stream, state) {
+			stream.skipToEnd();
+			console.log(stream.string);
+			var match = stream.string.match(/^\s*([0-9]+)\s*(min)?\s*([0-9\/.]+)\s*(lbs|lb|oz)\s*(.*) \[(?:\s*([0-9.]+)([a-z%]+)\s*)+\]$/i);
+			if (match === null) {
+				return 'error';
+			}
+			return 'hops';
+		}/*,
 		yeast: function (data, line) {
 			var match = line.match(/^\s*([0-9]+)\s*(?:pkg)?\s*(.*?)\s*([0-9.]+)%/i);
 			if (!match) {

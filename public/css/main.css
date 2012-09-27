@@ -21,7 +21,23 @@
 	padding: 0 1em 1em;
 }
 
+.CodeMirror-lines {
+	padding-left: 4em;
+}
 
+
+.CodeMirror .gutter-info {
+	color:#77c;
+}
+/*
+.CodeMirror pre .cm-header {
+	font-family: monospace;
+}
+
+.CodeMirror pre {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+ */
 
 .recipe-editor .section {
 

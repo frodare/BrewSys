@@ -155,6 +155,7 @@ Yummy!
 						<div>Grain: <b>${disp.glbs}</b> lbs</div>
 						<div>Hops: <b>${disp.hoz}</b> oz</div>
 						<div>12oz: <b>${disp.cal12oz}</b> cal</div>
+						<div>ABV: <b>${disp.abv}</b>%</div>
 					</div>
 				</div>
 				
@@ -192,7 +193,7 @@ Yummy!
 						<div class="guide">${disp.srm.min}</div>
 					</span>
 				</div>
-				<BR>
+				<!--
 				<div>
 					<span class="label">PB OG</span>
 					<span class="value"></span>
@@ -201,6 +202,7 @@ Yummy!
 					<span class="label">ATT</span>
 					<span class="value"></span>
 				</div>
+				-->
 				<div>
 					<span class="label">BU:GU</span>
 					<span class="value">
@@ -208,10 +210,7 @@ Yummy!
 						<span class="guide">(${disp.buog.avg} average)</span>
 					</span>
 				</div>
-				<div>
-					<span class="label">ABV</span>
-					<span class="value">${disp.abv}</span>
-				</div>
+				
 				<BR>
 				
 
@@ -346,6 +345,76 @@ Yummy!
 				display.html($.tmpl('results', {
 					disp: d
 				}));
+
+
+				/*
+				 * update editor gutter values
+				 */
+				$('.gutter-info').remove();
+
+				setTimeout(function() {
+					//console.log($('.cm-grain:visible'));
+
+					$('pre .cm-grain:nth-child(1)').each(function (i, e) {
+						var grainLine = $(e);
+						var offset = grainLine.position();
+						//hack, fixme
+						if(offset.top < 10){
+							return;
+						}
+
+						var info = $('<div class="gutter-info"></div>');
+
+						var amount = BREWCALC.toDecimal(grainLine.text().replace(/^\s*([0-9.\/]+)/, '$1'));
+
+						var percent = (100 * amount / stats.glbs).toFixed(1);
+
+						info.html(percent + '%');
+
+						info.css({
+							position: 'absolute',
+							top: offset.top,
+							left: '-50px'
+						})
+
+						grainLine.parents('div').first().after(info);
+
+					});
+
+
+					$('pre .cm-hops:nth-child(1)').each(function (i, e) {
+						var line = $(e);
+						var offset = line.position();
+						//hack, fixme
+						if(offset.top < 10){
+							return;
+						}
+
+						var info = $('<div class="gutter-info"></div>');
+
+						var amount = BREWCALC.toDecimal(line.text().match(/\s*([0-9.\/]+)\s*oz/)[1]);
+
+
+						var percent = (100 * amount / stats.hoz).toFixed(1);
+
+						console.log(amount);
+
+						info.html(percent + '%');
+
+						info.css({
+							position: 'absolute',
+							top: offset.top,
+							left: '-50px'
+						})
+
+						line.parents('div').first().after(info);
+
+					});
+
+
+				}, 0);
+
+				
 			}
 
 			editor = CodeMirror.fromTextArea($('.recipe-editor textarea')[0], {

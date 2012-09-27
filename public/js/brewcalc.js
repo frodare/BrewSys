@@ -34,6 +34,8 @@ var BREWCALC = {
 		return d;
 	}
 
+	b.toDecimal = toDecimal;
+
 	//http://realbeer.com/hops/research.html#table
 	var tinseth = function(og, time, amount, aa, vol) {
 		var ibu = 0;
