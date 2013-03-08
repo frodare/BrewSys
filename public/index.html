@@ -96,7 +96,7 @@ Yummy!
 			</div>
 
 
-			<!-- Example row of columns -->
+			<!-- Example row of columns 
 			<div class="row" style="margin-top:2em;">
 				<div class="span4">
 					<h4>Beer Markup</h4>
@@ -118,7 +118,18 @@ Yummy!
 					<p><a class="btn" href="https://github.com/frodare/jsBrewCalc">View details &raquo;</a></p>
 			   </div>
 			</div>
+			-->
+			<hr>
+				
 
+				<h2>Timer</h2>
+				<div id="beerTimer">
+					<div class="timer">00:00</div>
+					<div class="countDown" style="font-size:100px;font-family:monospace;position:fixed;top:102px;right:10px;">00:00</div>
+					<div class="hopTimes"></div>
+					<button class="start">Start</button>
+					<button class="stop">Stop</button>
+				</div>
 			<hr>
 
 			<footer>
@@ -144,6 +155,8 @@ Yummy!
 		
 		<script src="js/main.js"></script>
 		<script src="js/bml.js"></script>
+		<script src="js/beerTimer.js"></script>
+
 
 		<script id="results-tmpl" type="text/x-jquery-tmpl">
 			<div class="results-wrapper">
@@ -219,6 +232,12 @@ Yummy!
 		</script>
 
 		<script>
+
+			
+
+			/*
+			 * BML work
+			 */
 			var display = $('.beer-results .content');
 			$('#results-tmpl').template('results');
 			
@@ -284,6 +303,8 @@ Yummy!
 			function parse() {
 				var val = editor.getValue();
 				var recipe = BML.parse(val);
+
+				window.beerRecipe = recipe;
 
 
 				var stats = BREWCALC.compute(recipe); 
@@ -395,7 +416,6 @@ Yummy!
 
 						var percent = (100 * amount / stats.hoz).toFixed(1);
 
-						console.log(amount);
 
 						info.html(percent + '%');
 
@@ -433,13 +453,21 @@ Yummy!
 						}
 					}
 
-				   
+				  
+
+
 					parse();
 				},
 
 				extraKeys: {"Ctrl-Space": "autocomplete"}
 			});
 			parse();
+
+
+			/*
+			 * setup timer
+			 */
+			$('#beerTimer').beerTimer();
 
 		</script>
 
