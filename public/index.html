@@ -125,8 +125,14 @@ Yummy!
 				<h2>Timer</h2>
 				<div id="beerTimer">
 					<div class="timer">00:00</div>
-					<div class="countDown" style="font-size:100px;font-family:monospace;position:fixed;top:102px;right:10px;">00:00</div>
-					<div class="hopTimes"></div>
+					<div style="position:fixed;top:80px;right:40px;">
+						<div class="countDown" style="font-size:100px;line-height:100px;font-family:monospace;">00:00</div>
+						<div style="font-size:22px;line-height:28px;">
+							<div>started: <span class="startDate"></span></div>
+							<div class="hopTimes"></div>
+						</div>
+					</div>
+					
 					<button class="start">Start</button>
 					<button class="stop">Stop</button>
 				</div>
@@ -142,6 +148,7 @@ Yummy!
 		<script src="js/vendor/jquery.tmpl.min.js"></script>
 		<script src="js/vendor/jquery-ui-1.8.16.custom.min.js"></script>
 		<script src="js/vendor/bootstrap.min.js"></script>
+		<script src="js/vendor/moment.min.js"></script>
 
 
 		<script src="js/vendor/codemirror/lib/codemirror.js"></script>

@@ -1,7 +1,7 @@
 /*
  * jsBrewCalc
  */
-/*global console:true, styleTable:true, jQuery:true, BREWCALC:true*/
+/*global console:true, styleTable:true, jQuery:true, BREWCALC:true, moment:true */
 
 
 
@@ -27,6 +27,7 @@
 			self.timerDisplay = e.find('.timer');
 			self.countDownDisplay = e.find('.countDown');
 			self.hopTimersWrapper = e.find('.hopTimes');
+			self.startDate = e.find('.startDate');
 
 			e.find('button.start').on('click', function () {
 				if(self.started){
@@ -57,9 +58,7 @@
 
 			console.log('Recipe', window.beerRecipe);
 
-			if(window.beerRecipe){
-				self.buildHopTimers(window.beerRecipe.hops);
-			}
+			
 
 			self.boilTime = 60 * 60 * 1000;
 
@@ -71,6 +70,7 @@
 			var self = this;
 
 			var hopTimers = [];
+			self.hopTimersWrapper.empty();
 
 			$.each(hops, function (i, hop) {
 				var label = hop.amount + hop.unit + ' ' + hop.name;
@@ -92,10 +92,16 @@
 				return;
 			}
 
+
+
 			self.stopped = false;
 
 			self.started = new Date().getTime();
 			localStorage.setItem('timerStarted', self.started);
+
+			if(window.beerRecipe){
+				self.buildHopTimers(window.beerRecipe.hops);
+			}
 
 			self._poll();
 
@@ -114,6 +120,8 @@
 				return;
 			}
 
+			self.startDate.text(moment(self.started).format('LT'));
+
 			//self.timerDisplay
 
 			var startTime = self.started;
@@ -131,12 +139,18 @@
 
 				var countdown = self._countdownCompute(hopstart - new Date().getTime());
 
+				var label = hopTimer.data('label');
+
 				if(countdown.match('-.*')){
-					hopTimer.text(hopTimer.data('label') + ' ADD TO BOIL');
+					label += ' ADD TO BOIL';
 				}else{
-					hopTimer.text(hopTimer.data('label') + ' ' + countdown);
+					label += ' ' + countdown;
 				}
 
+				label += ' (' + moment(hopstart).format('LT') + ')';
+
+
+				hopTimer.text(label);
 				
 			});
 		},
